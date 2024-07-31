@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "template-mod",
+	"version": "${version}",
+	"name": "Template Mod",
+	"description": "desc",
+	"authors": [
+		"Aplixor"
+	],
+	"license": "ARR",
+	"icon": "assets/template-mod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.Aplixor.mod.TemplateMod"
+		],
+		"client": [
+			"com.Aplixor.mod.TemplateModClient"
+		],
+		"cardinal-components": [
+			"com.Aplixor.mod.spell.pike.point"
+		]
+	},
+	"mixins": [
+		"template-mod.mixins.json",
+		{
+			"config": "template-mod.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.5",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"tutorial:point"
+		]
+	}
+}
