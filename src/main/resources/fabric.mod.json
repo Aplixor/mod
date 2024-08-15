@@ -18,7 +18,8 @@
 			"com.Aplixor.mod.TemplateModClient"
 		],
 		"cardinal-components": [
-			"com.Aplixor.mod.spell.pike.point"
+			"com.Aplixor.mod.spell.pike.point",
+			"com.Aplixor.mod.attribute.Health"
 		]
 	},
 	"mixins": [
@@ -39,7 +40,8 @@
 	},
 	"custom": {
 		"cardinal-components": [
-			"tutorial:point"
+			"tutorial:point",
+			"tutorial:health_attribute"
 		]
 	}
 }

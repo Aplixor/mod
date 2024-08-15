@@ -11,30 +11,30 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class EntityFinder {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("template-mod");
 
-    public static ArrayList<Entity> getEntities(Integer radius, World world, PlayerEntity player) {
+    public static List<LivingEntity> getEntities(Integer radius, World world, PlayerEntity player) {
 
         Vec3d pos1 = new Vec3d(player.getX() + radius, player.getY() + radius, player.getZ() + radius);
         Vec3d pos2 = new Vec3d(player.getX() - radius, player.getY() - radius, player.getZ() - radius);
         Box box = new Box(pos1, pos2);
 
-        return (ArrayList<Entity>) world.getOtherEntities(player, box);
-
+        return world.getEntitiesByClass(LivingEntity.class, box, (entity -> !player.equals(entity)));
     }
 
-    public static ArrayList<Entity> getEntities(Integer radius, World world, PlayerEntity player, Integer angle) {
+    public static List<LivingEntity> getEntities(Integer radius, World world, PlayerEntity player, Integer angle) {
 
-        ArrayList<Entity> entityList = getEntities(radius, world, player);
+        var entityList = getEntities(radius, world, player);
 
         Vec3d lookingVector = Vec3d.fromPolar(player.getPitch(), player.getYaw()).normalize();
-        ArrayList<Entity> returnList = new ArrayList<>();
+        ArrayList<LivingEntity> returnList = new ArrayList<>();
 
-        for (Entity entity : entityList) {
+        for (LivingEntity entity : entityList) {
             if (!(entity instanceof LivingEntity)) continue;
             double angleToEntity = entity.getPos().subtract(player.getPos()).normalize().dotProduct(lookingVector);
             if (angle > Math.toDegrees(Math.acos(angleToEntity))) {
@@ -56,7 +56,7 @@ public class EntityFinder {
     }
 
     public static ArrayList<Entity> getFacingEntities(World world, PlayerEntity user, Integer radius, Predicate<Entity> check) {
-        ArrayList<Entity> fetched = EntityFinder.getEntities(radius,world,user);
+        List<LivingEntity> fetched = EntityFinder.getEntities(radius,world,user);
         ArrayList<Entity> entityArryList = new ArrayList<>();
         for (Entity ent : fetched) {
             if (!(ent instanceof LivingEntity)) continue;

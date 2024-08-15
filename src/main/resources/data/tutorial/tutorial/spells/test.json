@@ -1,0 +1,10 @@
+{
+  "name": "test",
+  "captures": [],
+  "interactions": [
+    {
+      "name": "Test",
+      "parameter": {}
+    }
+  ]
+}

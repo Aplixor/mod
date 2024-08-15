@@ -1,0 +1,21 @@
+{
+  "name": "www3",
+  "captures": [
+    {
+      "name": "Eyesight",
+      "parameter": {
+        "radius": "10"
+      }
+    }
+  ],
+  "interactions": [
+    {
+      "name": "Hurt",
+      "parameter": {
+        "length": "1",
+        "angle": "0.64",
+        "type": "fire"
+      }
+    }
+  ]
+}

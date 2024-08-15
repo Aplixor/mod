@@ -4,6 +4,7 @@
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"ServerTickMixin",
+		"healthMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
