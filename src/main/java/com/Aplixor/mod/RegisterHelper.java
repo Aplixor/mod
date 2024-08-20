@@ -4,6 +4,7 @@ import com.Aplixor.mod.items.GenericItem;
 import com.Aplixor.mod.items.TriggerDelegator;
 import com.Aplixor.mod.resources.Mapping;
 import com.Aplixor.mod.spell.capturing.CaptureFactory;
+import com.Aplixor.mod.spell.filter.FilterFactory;
 import com.Aplixor.mod.spell.functions.FunctionFactory;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
@@ -43,8 +44,12 @@ public class RegisterHelper {
                 CaptureFactory captureFactory = new CaptureFactory();
                 spell.captures().forEach(captureFactory::addCaptures);
 
+                FilterFactory filterFactory = new FilterFactory();
+                spell.filters().forEach(filterFactory::add);
+
                 TriggerDelegator.getInstance().put(spell.name(), ((world, user, hand) -> {
                     for (LivingEntity target : captureFactory.get(user)) {
+                        if (!filterFactory.check(user, target)) continue;
                         functionFactory.build().execute(user, target);
                     }
                     return null;

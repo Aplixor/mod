@@ -1,13 +1,22 @@
 {
   "name": "testb",
-  "captures": [],
+  "captures": [
+    {
+      "name": "Eyesight",
+      "parameter": {
+        "radius": "10"
+      }
+    }
+  ],
+  "filters": [
+
+  ],
   "interactions": [
     {
-      "name": "Parabola",
+      "name": "AddState",
       "parameter": {
-        "length": "1",
-        "angle": "0.64",
-        "type": "fire"
+        "ManagerName": "abc",
+        "ExpireAfter": "100"
       }
     }
   ]

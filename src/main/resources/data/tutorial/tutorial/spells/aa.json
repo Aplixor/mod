@@ -8,6 +8,14 @@
       }
     }
   ],
+  "filters": [
+    {
+      "name": "HasState",
+      "parameter": {
+        "ManagerName": "abc"
+      }
+    }
+  ],
   "interactions": [
     {
       "name": "Hurt",

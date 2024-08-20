@@ -19,7 +19,8 @@
 		],
 		"cardinal-components": [
 			"com.Aplixor.mod.spell.pike.point",
-			"com.Aplixor.mod.attribute.Health"
+			"com.Aplixor.mod.attribute.Health",
+			"com.Aplixor.mod.spell.Mark"
 		]
 	},
 	"mixins": [
@@ -41,7 +42,8 @@
 	"custom": {
 		"cardinal-components": [
 			"tutorial:point",
-			"tutorial:health_attribute"
+			"tutorial:health_attribute",
+			"tutorial:mark_key"
 		]
 	}
 }

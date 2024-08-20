@@ -4,18 +4,17 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public record Mapping(ArrayList<spells> spells, skill_tree skill_tree, damage_calculation damage_calculation) {
 
-    public record spells(String name, List<capture> captures, List<interaction> interactions, effects effects) {
+    public record spells(String name, List<capture> captures, List<filter> filters,List<interaction> interactions, effects effects) {
         public static Codec<spells> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.STRING.fieldOf("name").forGetter((spells o) -> o.name),
                 capture.CODEC.listOf().fieldOf("captures").forGetter((spells o) -> o.captures),
+                filter.CODEC.listOf().fieldOf("filters").forGetter((spells o) -> o.filters),
                 interaction.CODEC.listOf().fieldOf("interactions").forGetter((spells o) -> o.interactions)
-        ).apply(instance, ((n, c, i) -> new spells(n, c, i, null))));
+        ).apply(instance, ((n, c, f, i) -> new spells(n, c, f, i, null))));
 
 
         public record effects(ArrayList<HashMap<String, String>> sound, ArrayList<HashMap<String, String>> particles) {

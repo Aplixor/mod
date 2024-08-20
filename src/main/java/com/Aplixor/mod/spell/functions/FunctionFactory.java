@@ -35,5 +35,6 @@ public class FunctionFactory {
         functionMap.put("VelocityTo", (VelocityTo::new));
         functionMap.put("Parabola", (Parabola::new));
         functionMap.put("Test", (Test::new));
+        functionMap.put("AddState", (AddState::new));
     }
 }
