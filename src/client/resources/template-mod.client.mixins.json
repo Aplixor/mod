@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "com.Aplixor.mod.mixin.client",
+	"package": "com.aplixor.mod.mixin.client",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
 		"ExampleClientMixin"

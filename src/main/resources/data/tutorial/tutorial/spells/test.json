@@ -1,6 +1,13 @@
 {
   "name": "test",
-  "captures": [],
+  "captures": [
+    {
+      "name": "Self",
+      "parameter": {}
+    }
+  ],
+  "filters": [
+  ],
   "interactions": [
     {
       "name": "Test",

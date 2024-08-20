@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "com.Aplixor.mod.mixin",
+	"package": "com.aplixor.mod.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"ServerTickMixin",

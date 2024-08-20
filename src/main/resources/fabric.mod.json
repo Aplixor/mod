@@ -8,19 +8,18 @@
 		"Aplixor"
 	],
 	"license": "ARR",
-	"icon": "assets/template-mod/icon.png",
+	"icon": "assets/tutorial/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.Aplixor.mod.TemplateMod"
+			"com.aplixor.mod.TemplateMod"
 		],
 		"client": [
-			"com.Aplixor.mod.TemplateModClient"
+			"com.aplixor.mod.TemplateModClient"
 		],
 		"cardinal-components": [
-			"com.Aplixor.mod.spell.pike.point",
-			"com.Aplixor.mod.attribute.Health",
-			"com.Aplixor.mod.spell.Mark"
+			"com.aplixor.mod.attribute.Health",
+			"com.aplixor.mod.spell.Mark"
 		]
 	},
 	"mixins": [
