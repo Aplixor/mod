@@ -1,12 +1,13 @@
 {
-	"required": true,
-	"package": "com.aplixor.mod.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ServerTickMixin",
-		"healthMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "com.aplixor.mod.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "healthMixin",
+    "ServerTickMixin",
+    "ServerWorldMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

@@ -1,6 +1,5 @@
 package com.aplixor.mod.mixin;
 
-import com.aplixor.mod.mod;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,6 +12,5 @@ import java.util.function.BooleanSupplier;
 public class ServerTickMixin {
 	@Inject(at = @At("TAIL"), method = "tick")
 	private void onTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
-		mod.getInstance().getScheduler().tick();
 	}
 }

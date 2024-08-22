@@ -8,14 +8,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public record SpellMapping(String name, List<capture> captures, List<filter> filters, List<interaction> interactions,
-                           effects effects) {
+public record SpellMapping(String name, List<Interaction> interactions, List<func> consequence, effects effects) {
     public static Codec<SpellMapping> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.fieldOf("name").forGetter((SpellMapping o) -> o.name),
-            capture.CODEC.listOf().fieldOf("captures").forGetter((SpellMapping o) -> o.captures),
-            filter.CODEC.listOf().fieldOf("filters").forGetter((SpellMapping o) -> o.filters),
-            interaction.CODEC.listOf().fieldOf("interactions").forGetter((SpellMapping o) -> o.interactions)
-    ).apply(instance, ((n, c, f, i) -> new SpellMapping(n, c, f, i, null))));
+            Interaction.CODEC.listOf().fieldOf("interactions").forGetter((SpellMapping o ) -> o.interactions),
+            func.CODEC.listOf().fieldOf("consequence").forGetter((SpellMapping o) -> o.consequence)
+    ).apply(instance, ((n, i, inv) -> new SpellMapping(n, i, inv, null))));
+
+    public record Interaction(List<capture> captures, List<filter> filters, List<func> funcs) {
+        public static Codec<Interaction> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                capture.CODEC.listOf().fieldOf("captures").forGetter((Interaction o) -> o.captures),
+                filter.CODEC.listOf().fieldOf("filters").forGetter((Interaction o) -> o.filters),
+                func.CODEC.listOf().fieldOf("funcs").forGetter((Interaction o) -> o.funcs)
+        ).apply(instance, (Interaction::new)));
+    }
 
 
     public record effects(ArrayList<HashMap<String, String>> sound, ArrayList<HashMap<String, String>> particles) {
@@ -44,30 +50,12 @@ public record SpellMapping(String name, List<capture> captures, List<filter> fil
         ).apply(instance, filter::new));
     }
 
-    public record interaction(String name, HashMap<String, String> parameter) {
-        static Codec<interaction> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                Codec.STRING.fieldOf("name").forGetter((interaction o) -> o.name),
-                CodecUtil.mapCodec.fieldOf("parameter").forGetter((interaction o) -> o.parameter)
+    public record func(String name, HashMap<String, String> parameter) {
+        static Codec<func> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                Codec.STRING.fieldOf("name").forGetter((func o) -> o.name),
+                CodecUtil.mapCodec.fieldOf("parameter").forGetter((func o) -> o.parameter)
 
-        ).apply(instance, interaction::new));
-
-        @Override
-        public String toString() {
-            return "interaction{" +
-                    "name='" + name + '\'' +
-                    ", parameter=" + parameter +
-                    '}';
-        }
-    }
-
-    @Override
-    public String toString() {
-        ArrayList<String> strs = new ArrayList<>();
-        strs.add("name: " + name);
-        strs.add("capture: " + captures);
-        strs.add("interactions: " + interactions);
-        strs.add("effects: " + effects);
-        return String.join("\n", strs);
+        ).apply(instance, func::new));
     }
 
 }

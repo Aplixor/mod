@@ -8,21 +8,21 @@ import java.util.HashMap;
 public class FunctionFactory {
 
     HashMap<String, java.util.function.Function<Function, Function>> functionMap = new HashMap<>();
-    ArrayList<SpellMapping.interaction> interactions = new ArrayList<>();
+    ArrayList<SpellMapping.func> funcionList = new ArrayList<>();
 
     public FunctionFactory() {
         addFunctions();
     }
 
-    public void putFunction(SpellMapping.interaction interaction) {
-        interactions.add(interaction);
+    public void putFunction(SpellMapping.func func) {
+        funcionList.add(func);
     }
 
     public Function build() {
         Function base = Function.getEmpty();
 
-        for (int i=0;i<interactions.size();i++) {
-            var interact = interactions.get(i);
+        for (int i = 0; i< funcionList.size(); i++) {
+            var interact = funcionList.get(i);
             base = this.functionMap.get(interact.name()).apply(base);
             base.applyParameter(interact.parameter());
         }
@@ -36,5 +36,6 @@ public class FunctionFactory {
         functionMap.put("Parabola", (Parabola::new));
         functionMap.put("Test", (Test::new));
         functionMap.put("AddState", (AddState::new));
+        functionMap.put("ScheduleSpell", (ScheduleSpell::new));
     }
 }

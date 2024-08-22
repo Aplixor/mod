@@ -24,7 +24,7 @@ public class Command implements com.mojang.brigadier.Command<FabricClientCommand
 
     @Override
     public int run(CommandContext<FabricClientCommandSource> context) throws CommandSyntaxException {
-        RegistryKey<Registry<SpellMapping>> key = RegistryKey.ofRegistry(new Identifier("tutorial", "bbc"));
+        RegistryKey<Registry<SpellMapping>> key = RegistryKey.ofRegistry(new Identifier("tutorial", "spells"));
 
         context.getSource().getRegistryManager().get(key).stream().forEach((spells -> context.getSource().getClient().player.sendMessage(Text.literal(spells.toString()))));
 

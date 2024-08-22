@@ -1,17 +1,25 @@
 {
   "name": "test",
-  "captures": [
-    {
-      "name": "Self",
-      "parameter": {}
-    }
-  ],
-  "filters": [
-  ],
   "interactions": [
     {
-      "name": "Test",
-      "parameter": {}
+      "captures": [
+        {
+          "name": "Self",
+          "parameter": {}
+        }
+      ],
+      "filters": [
+      ],
+      "funcs": [
+        {
+          "name": "ScheduleSpell",
+          "parameter": {
+            "AfterTicks": "20",
+            "SpellName": "testb"
+          }
+        }
+      ]
     }
-  ]
+  ],
+  "consequence": []
 }

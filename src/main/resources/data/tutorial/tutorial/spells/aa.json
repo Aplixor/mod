@@ -1,28 +1,40 @@
 {
   "name": "www3",
-  "captures": [
-    {
-      "name": "Eyesight",
-      "parameter": {
-        "radius": "10"
-      }
-    }
-  ],
-  "filters": [
-    {
-      "name": "HasState",
-      "parameter": {
-        "ManagerName": "abc"
-      }
-    }
-  ],
   "interactions": [
     {
-      "name": "Hurt",
+      "captures": [
+        {
+          "name": "Eyesight",
+          "parameter": {
+            "radius": "10"
+          }
+        }
+      ],
+      "filters": [
+        {
+          "name": "HasState",
+          "parameter": {
+            "ManagerName": "abc"
+          }
+        }
+      ],
+      "funcs": [
+        {
+          "name": "Hurt",
+          "parameter": {
+            "length": "1",
+            "angle": "0.64",
+            "type": "fire"
+          }
+        }
+      ]
+    }
+  ],
+  "consequence": [
+    {
+      "name": "VelocityTo",
       "parameter": {
-        "length": "1",
-        "angle": "0.64",
-        "type": "fire"
+        "strength": "3"
       }
     }
   ]

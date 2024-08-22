@@ -2,6 +2,7 @@ package com.aplixor.mod.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class SchedulerImpl implements Scheduler {
@@ -22,7 +23,9 @@ public class SchedulerImpl implements Scheduler {
                 .filter((s -> timetable.get(s) <= this.clock))
                 .toList();
 
-        for (String key : due) {
+        Iterator<String> iter = due.iterator();
+        while (iter.hasNext()) {
+            String key = iter.next();
 
             storedEntries.get(key).run();
             taskLives.put(key, taskLives.get(key)-1);
