@@ -11,14 +11,15 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 
 public class InstructionWrapper {
 
     ArrayList<instruction> instructionArrayList = new ArrayList<>();
 
-    public void add(java.util.function.Function<PlayerEntity, List<LivingEntity>> entityGetter, BiPredicate<PlayerEntity, LivingEntity> checker, Function function) {
-        this.instructionArrayList.add(new instruction(entityGetter, checker, function));
+    public void add(java.util.function.Function<PlayerEntity, List<LivingEntity>> entityGetter, BiPredicate<PlayerEntity, LivingEntity> checker, BiConsumer<PlayerEntity, LivingEntity> func) {
+        this.instructionArrayList.add(new instruction(entityGetter, checker, func));
     }
 
     public TriggerTypes.useTrigger get() {
@@ -29,12 +30,12 @@ public class InstructionWrapper {
         for (var ins : instructionArrayList) {
             for (LivingEntity target : ins.entityGetter.apply(user)) {
                 if (!ins.checker.test(user, target)) continue;
-                ins.function.execute(user, target);
+                ins.func.accept(user, target);
             }
         }
         return null;
     };
 
-    record instruction(java.util.function.Function<PlayerEntity, List<LivingEntity>> entityGetter, BiPredicate<PlayerEntity, LivingEntity> checker, Function function) {};
+    record instruction(java.util.function.Function<PlayerEntity, List<LivingEntity>> entityGetter, BiPredicate<PlayerEntity, LivingEntity> checker, BiConsumer<PlayerEntity, LivingEntity> func) {};
 
 }

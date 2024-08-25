@@ -14,8 +14,15 @@
         {
           "name": "ScheduleSpell",
           "parameter": {
-            "AfterTicks": "20",
-            "SpellName": "testb"
+            "afterTicks": 20,
+            "spellName": "testb"
+          }
+        },
+        {
+          "name": "Parabola",
+          "parameter": {
+            "length": 3,
+            "angle": 0.5
           }
         }
       ]

@@ -6,19 +6,17 @@
         {
           "name": "Eyesight",
           "parameter": {
-            "radius": "10"
+            "radius": 10
           }
         }
       ],
-      "filters": [
-
-      ],
+      "filters": [],
       "funcs": [
         {
           "name": "AddState",
           "parameter": {
-            "ManagerName": "abc",
-            "ExpireAfter": "100"
+            "managerName": "abc",
+            "expireAfter": 100
           }
         }
       ]
@@ -28,8 +26,8 @@
     {
       "name": "Parabola",
       "parameter": {
-        "length": "1.0",
-        "angle": "0.785"
+        "length": 1.0,
+        "angle": 0.785
       }
     }
   ]

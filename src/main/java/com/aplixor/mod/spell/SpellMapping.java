@@ -2,6 +2,7 @@ package com.aplixor.mod.spell;
 
 import com.aplixor.mod.util.CodecUtil;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.ArrayList;
@@ -34,26 +35,27 @@ public record SpellMapping(String name, List<Interaction> interactions, List<fun
         }
     }
 
-    public record capture(String name, HashMap<String, String> parameter) {
+    public record capture(String name, Dynamic<?> parameter) {
         static Codec<capture> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.STRING.fieldOf("name").forGetter((capture o) -> o.name),
-                CodecUtil.mapCodec.fieldOf("parameter").forGetter((capture o) -> o.parameter)
+                Codec.PASSTHROUGH.fieldOf("parameter").forGetter((capture o) -> o.parameter)
 
         ).apply(instance, capture::new));
     }
 
-    public record filter(String name, HashMap<String, String> parameter) {
+    public record filter(String name, Dynamic<?> parameter) {
         static Codec<filter> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.STRING.fieldOf("name").forGetter((filter o) -> o.name),
-                CodecUtil.mapCodec.fieldOf("parameter").forGetter((filter o) -> o.parameter)
+                Codec.PASSTHROUGH.fieldOf("parameter").forGetter((filter o) -> o.parameter)
 
         ).apply(instance, filter::new));
     }
 
-    public record func(String name, HashMap<String, String> parameter) {
+    public record func(String name, Dynamic<?> parameter) {
         static Codec<func> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.STRING.fieldOf("name").forGetter((func o) -> o.name),
-                CodecUtil.mapCodec.fieldOf("parameter").forGetter((func o) -> o.parameter)
+                Codec.PASSTHROUGH.fieldOf("parameter").forGetter((func o) -> o.parameter)
+//                CodecUtil.mapCodec.fieldOf("parameter").forGetter((func o) -> o.parameter)
 
         ).apply(instance, func::new));
     }

@@ -6,7 +6,7 @@
         {
           "name": "Eyesight",
           "parameter": {
-            "radius": "10"
+            "radius": 10
           }
         }
       ],
@@ -14,7 +14,7 @@
         {
           "name": "HasState",
           "parameter": {
-            "ManagerName": "abc"
+            "managerName": "abc"
           }
         }
       ],
@@ -22,9 +22,7 @@
         {
           "name": "Hurt",
           "parameter": {
-            "length": "1",
-            "angle": "0.64",
-            "type": "fire"
+            "amount": 10
           }
         }
       ]
@@ -34,7 +32,7 @@
     {
       "name": "VelocityTo",
       "parameter": {
-        "strength": "3"
+        "strength": 3
       }
     }
   ]

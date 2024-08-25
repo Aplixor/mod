@@ -1,5 +1,6 @@
 package com.aplixor.mod;
 
+import com.aplixor.mod.command.SDynamicRegisterContentCommand;
 import com.aplixor.mod.items.GenericItem;
 import com.aplixor.mod.spell.SpellLoader;
 import com.aplixor.mod.spell.SpellMapping;
@@ -29,14 +30,16 @@ public class RegisterHelper {
         RegistryKey<Registry<SpellMapping>> key = RegistryKey.ofRegistry(new Identifier("tutorial", "spells"));
         DynamicRegistries.registerSynced(key, SpellMapping.CODEC);
 
-        var loader = new SpellLoader();
-
-        DynamicRegistrySetupCallback.EVENT.register(registryView -> {
-            registryView.registerEntryAdded(key, ((rawId, id, object) -> {
-                loader.addSpell(object);
-                loader.loadAll();
-            }));
-        });
+        SDynamicRegisterContentCommand.register();
+//        var loader = new SpellLoader();
+//
+//        DynamicRegistrySetupCallback.EVENT.register(registryView -> {
+//            System.out.println(registryView.asDynamicRegistryManager());
+//            registryView.registerEntryAdded(key, ((rawId, id, object) -> {
+//                loader.addSpell(object);
+//                loader.loadAll();
+//            }));
+//        });
 
     }
 }

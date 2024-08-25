@@ -1,30 +1,14 @@
 package com.aplixor.mod.spell.functions;
 
+import com.mojang.serialization.Dynamic;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
-import java.util.HashMap;
+import java.util.function.BiConsumer;
 
-public class Function {
-    Function deco;
-    String name = "base";
+public interface Function<T> {
 
-    public Function(Function deco) {
-        this.deco = deco;
-    }
+    void direct(PlayerEntity cast, LivingEntity target, T parameter);
 
-    public static Function getEmpty() {
-        return new Function(null);
-    }
-
-    public void applyParameter(HashMap<String, String> param) {};
-
-    public void insturction(PlayerEntity cast, LivingEntity target) {};
-
-    public void execute(PlayerEntity cast, LivingEntity target) {
-        this.insturction(cast, target);
-        if (this.deco != null) {
-            this.deco.execute(cast, target);
-        }
-    }
+    BiConsumer<PlayerEntity, LivingEntity> get(Dynamic<?> parameterSource);
 }

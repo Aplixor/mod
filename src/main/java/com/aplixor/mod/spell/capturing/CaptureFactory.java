@@ -7,31 +7,26 @@ import net.minecraft.entity.player.PlayerEntity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class CaptureFactory {
 
-    HashMap<String, Supplier<Capture>> mapping = new HashMap<>();
-    ArrayList<Capture> list = new ArrayList<>();
+    HashMap<String, Capture<?>> mapping = new HashMap<>();
+    ArrayList<Function<PlayerEntity, List<LivingEntity>>> list = new ArrayList<>();
 
     public CaptureFactory() {
-        mapping.put("Eyesight", Eyesight::new);
-        mapping.put("Self", Self::new);
+        mapping.put("Eyesight", new Eyesight());
+        mapping.put("Self", new Self());
 
     }
 
     public void addCaptures(SpellMapping.capture capture) {
-        var a = mapping.get(capture.name()).get();
-        a.setParameter(capture.parameter());
-        list.add(a);
+        var capture1 = mapping.get(capture.name());
+        list.add(capture1.get(capture.parameter()));
     }
 
     public List<LivingEntity> get(PlayerEntity cast) {
-        ArrayList<LivingEntity> result = new ArrayList<>();
-        for (var cap : list) {
-            result.addAll(cap.execute(cast));
-        }
-        System.out.println((list.stream().map(capture -> capture.execute(cast)).flatMap(List::stream).toList()));
-        return result;
+        return list.stream().map(cap -> cap.apply(cast)).flatMap(List::stream).toList();
     }
 }

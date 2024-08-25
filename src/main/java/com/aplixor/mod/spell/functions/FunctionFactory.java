@@ -1,13 +1,19 @@
 package com.aplixor.mod.spell.functions;
 
+import com.aplixor.mod.items.TriggerTypes;
 import com.aplixor.mod.spell.SpellMapping;
+import com.google.gson.Gson;
+import com.mojang.serialization.JsonOps;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.BiConsumer;
 
 public class FunctionFactory {
 
-    HashMap<String, java.util.function.Function<Function, Function>> functionMap = new HashMap<>();
+    HashMap<String, Function<?>> functionMap = new HashMap<>();
     ArrayList<SpellMapping.func> funcionList = new ArrayList<>();
 
     public FunctionFactory() {
@@ -18,24 +24,29 @@ public class FunctionFactory {
         funcionList.add(func);
     }
 
-    public Function build() {
-        Function base = Function.getEmpty();
+    public BiConsumer<PlayerEntity, LivingEntity> build() {
+
+        ArrayList<BiConsumer<PlayerEntity, LivingEntity>> functions = new ArrayList<>();
 
         for (int i = 0; i< funcionList.size(); i++) {
             var interact = funcionList.get(i);
-            base = this.functionMap.get(interact.name()).apply(base);
-            base.applyParameter(interact.parameter());
+            var func = this.functionMap.get(interact.name());
+            if (func == null) {
+                System.out.printf("Function %s is null%n", interact.name());
+                continue;
+            }
+            functions.add(func.get(interact.parameter()));
         }
 
-        return base;
+        return (cast, target) -> functions.forEach(f -> f.accept(cast, target));
     }
 
     void addFunctions() {
-        functionMap.put("Hurt", (Hurt::new));
-        functionMap.put("VelocityTo", (VelocityTo::new));
-        functionMap.put("Parabola", (Parabola::new));
-        functionMap.put("Test", (Test::new));
-        functionMap.put("AddState", (AddState::new));
-        functionMap.put("ScheduleSpell", (ScheduleSpell::new));
+        functionMap.put("Hurt", new Hurt());
+        functionMap.put("VelocityTo", new VelocityTo());
+        functionMap.put("Parabola", new Parabola());
+//        functionMap.put("Test", (Test::new));
+        functionMap.put("AddState", new AddState());
+        functionMap.put("ScheduleSpell", new ScheduleSpell());
     }
 }

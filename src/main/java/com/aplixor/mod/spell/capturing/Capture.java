@@ -1,16 +1,17 @@
 package com.aplixor.mod.spell.capturing;
 
+import com.mojang.serialization.Dynamic;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
-public abstract class Capture {
+public interface Capture<T> {
 
-    public void setParameter(HashMap<String, String> map) {
+    Function<PlayerEntity, List<LivingEntity>> get(Dynamic<?> dynamic);
 
-    }
-
-    public abstract List<LivingEntity> execute(PlayerEntity cast);
+    List<LivingEntity> direct(PlayerEntity cast, T parameter);
 }

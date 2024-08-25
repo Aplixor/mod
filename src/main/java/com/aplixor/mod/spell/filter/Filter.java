@@ -1,13 +1,15 @@
 package com.aplixor.mod.spell.filter;
 
+import com.mojang.serialization.Dynamic;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.HashMap;
+import java.util.function.BiPredicate;
 
-public interface Filter {
+public interface Filter<T> {
 
-    boolean apply(PlayerEntity cast, LivingEntity target);
+    BiPredicate<PlayerEntity, LivingEntity> get(Dynamic<?> dynamic);
 
-    void applyParameter(HashMap<String, String> map);
+    boolean direct(PlayerEntity cast, LivingEntity target, T parameter);
 }
