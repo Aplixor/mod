@@ -2,10 +2,8 @@ package com.aplixor.mod;
 
 import com.aplixor.mod.command.SDynamicRegisterContentCommand;
 import com.aplixor.mod.items.GenericItem;
-import com.aplixor.mod.spell.SpellLoader;
 import com.aplixor.mod.spell.SpellMapping;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
-import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;

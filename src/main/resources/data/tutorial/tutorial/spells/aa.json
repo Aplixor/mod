@@ -10,14 +10,7 @@
           }
         }
       ],
-      "filters": [
-        {
-          "name": "HasState",
-          "parameter": {
-            "managerName": "abc"
-          }
-        }
-      ],
+      "filters": [],
       "funcs": [
         {
           "name": "Hurt",
@@ -29,11 +22,5 @@
     }
   ],
   "consequence": [
-    {
-      "name": "VelocityTo",
-      "parameter": {
-        "strength": 3
-      }
-    }
   ]
 }

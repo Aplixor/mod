@@ -1,13 +1,13 @@
 package com.aplixor.mod.spell.functions;
 
-import com.aplixor.mod.core.Interactions.InteractFactory;
-import com.aplixor.mod.core.Interactions.Subtract;
+import com.aplixor.mod.entity.ModHealth;
 import com.aplixor.mod.spell.ParameterHelper;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
 
 import java.util.function.BiConsumer;
 
@@ -15,7 +15,7 @@ public class Hurt implements Function<Hurt.HurtParameter> {
 
     @Override
     public void direct(PlayerEntity cast, LivingEntity target, HurtParameter hurtParameter) {
-        new Subtract(InteractFactory.entityHealth(target), hurtParameter.amount).execute();
+//        new Subtract(InteractFactory.entityHealth(target), hurtParameter.amount).execute();
     }
 
     @Override
