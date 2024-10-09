@@ -1,6 +1,6 @@
 package com.aplixor.mod.mixin.client;
 
-import com.aplixor.mod.entity.ModHealth;
+import com.aplixor.mod.entity.CustomDatatracker;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.LayeredDrawer;
@@ -35,8 +35,8 @@ public abstract class InGameHudMixin {
 
     @Unique
     private void renderHotbar(DrawContext context, float tickDelta) {
-        Text healthText = Text.literal("Health: " + ((ModHealth)client.player).template_mod_template_1_20_5$getModHealth());
-        Text manaText = Text.literal(String.format("Mana: %f.1", ((ModHealth)client.player).template_mod_template_1_20_5$getModMana()));
+        Text healthText = Text.literal("Health: " + ((CustomDatatracker)client.player).template_mod_template_1_20_5$getModHealth());
+        Text manaText = Text.literal(String.format("Mana: %f.1", ((CustomDatatracker)client.player).template_mod_template_1_20_5$getModMana()));
 
         var healthTextHeight = context.getScaledWindowHeight()/2;
         var manaTextHeight = healthTextHeight +  client.textRenderer.fontHeight;

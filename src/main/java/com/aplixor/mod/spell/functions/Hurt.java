@@ -1,13 +1,11 @@
 package com.aplixor.mod.spell.functions;
 
-import com.aplixor.mod.entity.ModHealth;
 import com.aplixor.mod.spell.ParameterHelper;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Text;
 
 import java.util.function.BiConsumer;
 

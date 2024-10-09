@@ -1,7 +1,7 @@
 package com.aplixor.mod.mixin;
 
 import com.aplixor.mod.attribute.AttributeList;
-import com.aplixor.mod.entity.ModHealth;
+import com.aplixor.mod.entity.CustomDatatracker;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements ModHealth {
+public abstract class LivingEntityMixin extends Entity implements CustomDatatracker {
 
     @Shadow public abstract double getAttributeValue(RegistryEntry<EntityAttribute> attribute);
 
@@ -34,6 +34,8 @@ public abstract class LivingEntityMixin extends Entity implements ModHealth {
     private static final TrackedData<Float> MOD_HEALTH = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.FLOAT);
     @Unique
     private static final TrackedData<Float> MOD_MANA = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.FLOAT);
+    @Unique
+    private static final TrackedData<Float> MOD_ENERGY_SHIELD = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.FLOAT);
 
 
     @Inject(method = "createLivingAttributes", at = @At("TAIL"))
@@ -45,6 +47,7 @@ public abstract class LivingEntityMixin extends Entity implements ModHealth {
     public void initDataTracker(DataTracker.Builder builder, CallbackInfo ci) {
         builder.add(MOD_HEALTH, 20f);
         builder.add(MOD_MANA, 100f);
+        builder.add(MOD_ENERGY_SHIELD, 0f);
     }
 
     @Inject(method = "onTrackedDataSet", at = @At("TAIL"))
@@ -63,6 +66,8 @@ public abstract class LivingEntityMixin extends Entity implements ModHealth {
         var mana = Math.clamp(this.dataTracker.get(MOD_MANA) + this.getAttributeValue(AttributeList.mana_regenerate), 0, this.getAttributeValue(AttributeList.max_mana));
         this.dataTracker.set(MOD_MANA, (float) mana);
 
+        var energyShield = Math.clamp(this.dataTracker.get(MOD_ENERGY_SHIELD) + this.getAttributeValue(AttributeList.energy_shield_regenerate), 0, this.getAttributeValue(AttributeList.maxEnergyShield));
+        template_mod_template_1_20_5$setEnergyShield((float)energyShield);
     }
 
     @Unique
@@ -83,5 +88,15 @@ public abstract class LivingEntityMixin extends Entity implements ModHealth {
     @Override
     public float template_mod_template_1_20_5$getModMana() {
         return this.dataTracker.get(MOD_MANA);
+    }
+
+    @Override
+    public float template_mod_template_1_20_5$getEnergyShield() {
+        return this.dataTracker.get(MOD_ENERGY_SHIELD);
+    }
+
+    @Override
+    public void template_mod_template_1_20_5$setEnergyShield(Float value) {
+        this.dataTracker.set(MOD_ENERGY_SHIELD, value);
     }
 }

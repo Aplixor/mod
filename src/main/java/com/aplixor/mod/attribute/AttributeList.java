@@ -15,12 +15,12 @@ public class AttributeList {
 
     public static List<RegistryEntry<EntityAttribute>> Entry_List = new ArrayList<>();
 
-    public static RegistryEntry<EntityAttribute> health_Attribute = register("health", new ClampedEntityAttribute("tutorial.bbcc", 20, 0, 10000));
     public static RegistryEntry<EntityAttribute> health_regenerate = register("health_regenerate", new ClampedEntityAttribute("tutorial.health_regenerate", 0, -100, 10000));
-    public static RegistryEntry<EntityAttribute> mana_Attribute = register("mana", new ClampedEntityAttribute("tutorial.mana", 0, 0, 10000));
     public static RegistryEntry<EntityAttribute> mana_regenerate = register("mana_regenerate", new ClampedEntityAttribute("tutorial.mana_regenerate", 0, 0, 10000));
+    public static RegistryEntry<EntityAttribute> energy_shield_regenerate = register("energy_shield_regenerate", new ClampedEntityAttribute("tutorial.energy_shield_regenerate", 0, 0, 10000));
     public static RegistryEntry<EntityAttribute> max_health = register("max_health", new ClampedEntityAttribute(TemplateMod.NAMESPACE + ".max_health", 20, 1, 10000));
     public static RegistryEntry<EntityAttribute> max_mana = register("max_mana", new ClampedEntityAttribute(TemplateMod.NAMESPACE + ".max_mana", 20, 1, 10000));
+    public static RegistryEntry<EntityAttribute> maxEnergyShield = register("max_energy_shield", new ClampedEntityAttribute(TemplateMod.NAMESPACE + "max_energy_shield", 0, 0, 10000));
 
     public static RegistryEntry<EntityAttribute> strength = register("strength", new ClampedEntityAttribute(TemplateMod.NAMESPACE + "strength", 0, 0, 10000));
     public static RegistryEntry<EntityAttribute> intelligence = register("intelligence", new ClampedEntityAttribute(TemplateMod.NAMESPACE + "intelligence", 0, 0, 10000));
@@ -32,7 +32,6 @@ public class AttributeList {
     public static RegistryEntry<EntityAttribute> basePhysicalDamage = register("base_physical_damage", new ClampedEntityAttribute(TemplateMod.NAMESPACE + "base_physical_damage", 0, 0, 10000));
     public static RegistryEntry<EntityAttribute> basePhysicalDefense = register("base_physical_defense", new ClampedEntityAttribute(TemplateMod.NAMESPACE + "base_physical_defense", 0, 0, 10000));
     public static RegistryEntry<EntityAttribute> baseMagicDamage = register("base_magic_damage", new ClampedEntityAttribute(TemplateMod.NAMESPACE + "base_magic_damage", 0, 0, 10000));
-    public static RegistryEntry<EntityAttribute> maxEnergyShield = register("max_energy_shield", new ClampedEntityAttribute(TemplateMod.NAMESPACE + "max_energy_shield", 0, 0, 10000));
 
     public static RegistryEntry<EntityAttribute> evasion = register("evasion", new ClampedEntityAttribute(TemplateMod.NAMESPACE + "evasion", 0, 0, 10000));
     public static RegistryEntry<EntityAttribute> accuracy = register("accuracy", new ClampedEntityAttribute(TemplateMod.NAMESPACE + "accuracy", 0, 0, 10000));
